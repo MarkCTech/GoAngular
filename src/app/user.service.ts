@@ -1,26 +1,64 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { USERS } from './mock-users';
 import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
+  ) { }
+
+  // URL to web api
+  private usersUrl = 'api/users';
+
+  private log(message: string) {
+    this.messageService.add(`UserService: ${message}`);
+  }
+
+  //Handle Http operation failure, let app continue
+  //@param operation - name of the operation that failed
+  //@param result - optional value to return as the observable result
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
 
   getUsers(): Observable<User[]> {
-    const users = of(USERS);
-    this.messageService.add('UserService: Fetched Users');
-    return users;
+    return this.http.get<User[]>(this.usersUrl)
+    .pipe(
+      tap(_ => this.log('Fetched users')),
+      catchError(this.handleError<User[]>('getUsers', []))
+    );
   }
 
+  //GET user by id, else 404
   getUser(id: number): Observable<User> {
-    //Assuming id always valid
-    const user = USERS.find(u => u.id === id)!;
-    this.messageService.add(`UserService: fetched user id=${id}`);
-    return of(user);
+    const url = `${this.usersUrl}/${id}`;
+    return this.http.get<User>(url).pipe(
+      tap(_ => this.log(`fetched User id=${id}`)),
+      catchError(this.handleError<User>(`getUser id=${id}`))
+    );
   }
+
+  updateUser(user: User): Observable<any> {
+    return this.http.put(this.usersUrl, user, this.httpOptions)
+    .pipe(
+      tap( _ => this.log(`Updated user id=${user.id}`)),
+      catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 }
