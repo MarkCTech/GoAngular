@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-users',
@@ -28,5 +27,11 @@ export class UsersComponent implements OnInit {
       .subscribe(user => {
         this.users.push(user);
       });
+  }
+
+  //Expects to suceed, removes user from classes own user list
+  delete(user: User): void {
+    this.users = this.users.filter(u => u !== user);
+    this.userService.deleteUser(user.id).subscribe();
   }
 }

@@ -58,6 +58,7 @@ export class UserService {
     );
   }
 
+  //PUT saves updated details
   updateUser(user: User): Observable<any> {
     return this.http.put(this.usersUrl, user, this.httpOptions)
     .pipe(
@@ -66,7 +67,16 @@ export class UserService {
     );
   }
 
+  //DELETE user by id
+  deleteUser(id: number): Observable<User> {
+    const url = `${this.usersUrl}/${id}`;
   
+    return this.http.delete<User>(url, this.httpOptions)
+    .pipe(
+      tap(_ => this.log(`deleted User id=${id}`)),
+      catchError(this.handleError<User>('deleteUser'))
+    );
+  }
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
