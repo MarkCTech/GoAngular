@@ -1,10 +1,10 @@
 # AngularFront
 ## Summary
-A web app, built with the 'Tour of Heroes' tutorial in the Angular Docs for reference.
+A web app, built using the 'Tour of Heroes' tutorial in the Angular Docs as a reference.
 
 ## Using the Program
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
+Put this source code into a project generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
 ## Development server
 
