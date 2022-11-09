@@ -16,4 +16,11 @@ export class UserService {
     this.messageService.add('UserService: Fetched Users');
     return users;
   }
+
+  getUser(id: number): Observable<User> {
+    //Assuming id always valid
+    const user = USERS.find(u => u.id === id)!;
+    this.messageService.add(`UserService: fetched user id=${id}`);
+    return of(user);
+  }
 }
