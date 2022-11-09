@@ -45,7 +45,7 @@ export class UserService {
   getUser(id: number): Observable<User> {
     const url = `${this.usersUrl}/${id}`;
     return this.http.get<User>(url).pipe(
-      tap(_ => this.log(`fetched User id=${id}`)),
+      tap(_ => this.log(`Fetched User id=${id}`)),
       catchError(this.handleError<User>(`getUser id=${id}`))
     );
   }
@@ -53,7 +53,7 @@ export class UserService {
   // POST new user to the server
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.usersUrl, user, this.httpOptions).pipe(
-      tap((newuser: User) => this.log(`added user w/ id=${newuser.id}`)),
+      tap((newuser: User) => this.log(`Added user w/ id=${newuser.id}`)),
       catchError(this.handleError<User>('adduser'))
     );
   }
@@ -65,6 +65,8 @@ export class UserService {
       catchError(this.handleError<any>('updateUser'))
     );
   }
+
+  
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
