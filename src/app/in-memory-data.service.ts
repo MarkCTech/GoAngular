@@ -23,6 +23,6 @@ export class InMemoryDataService implements InMemoryDbService {
   // if the users array is not empty, the method below returns the highest
   // user id + 1.
   genId(users: User[]): number {
-    return users.length > 0 ? Math.max(...users.map(user => user.id)) + 1 : 0;
+    return users.length > 0 ? Math.max(...users.map(user => user.id)) + 1 : 1;
   }
 }
