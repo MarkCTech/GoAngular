@@ -7,14 +7,14 @@ import { User } from './user';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    /**
       const users = [
       {id:1, name: 'Tom', pennies: 11},
       {id:2, name: 'Dick', pennies: 22},
-      {id:3, name: 'Harry', pennies: 33}
+      {id:3, name: 'Harry', pennies: 33},
+      {id:4, name: 'Peter', pennies: 44},
+      {id:5, name: 'Paul', pennies: 55}
     ];
-    */
-    const users: User[] = [];
+    // const users: User[] = [];
     return {users};
   }
 
