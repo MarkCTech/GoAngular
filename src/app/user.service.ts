@@ -33,6 +33,7 @@ export class UserService {
     };
   }
 
+  //GET all users
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl)
     .pipe(
@@ -42,10 +43,14 @@ export class UserService {
   }
 
   //GET user by id, else 404
-  getUser(id: number): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
-    return this.http.get<User>(url).pipe(
-      tap(_ => this.log(`Fetched User id=${id}`)),
+  getUser<Data>(id: number): Observable<User> {
+    const url = `${this.usersUrl}/?id=${id}`;
+    return this.http.get<User[]>(url).pipe(
+      map(users => users[0]),
+      tap(u => {
+        const outcome = u ? 'Fetched' : 'Did not find';
+        this.log(`${outcome} user id=${id}`);
+      }),
       catchError(this.handleError<User>(`getUser id=${id}`))
     );
   }
