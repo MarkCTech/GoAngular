@@ -13,11 +13,13 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getUsers();
   }
 
-  getHeroes(): void {
+  getUsers(): void {
     this.userService.getUsers()
-      .subscribe(users => this.users = users.slice(0, 5));
+      .subscribe(users => this.users = users.sort(function (a,b) {
+        return b.pennies - a.pennies
+      }).slice(0,3));
   }
 }
