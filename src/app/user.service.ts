@@ -73,7 +73,7 @@ export class UserService {
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.usersUrl, user, this.httpOptions).pipe(
       tap((newuser: User) => this.log(`Added user w/ id=${newuser.id}`)),
-      catchError(this.handleError<User>('adduser'))
+      catchError(this.handleError<User>('addUser'))
     );
   }
 
@@ -91,7 +91,7 @@ export class UserService {
     const url = `${this.usersUrl}/${id}`;
     return this.http.delete<User>(url, this.httpOptions)
     .pipe(
-      tap(_ => this.log(`deleted User id=${id}`)),
+      tap(_ => this.log(`Deleted user id=${id}`)),
       catchError(this.handleError<User>('deleteUser'))
     );
   }
