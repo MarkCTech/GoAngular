@@ -42,7 +42,7 @@ export class UserService {
     );
   }
 
-  //GET user by id, else 404
+  //GET user by id
   getUser<Data>(id: number): Observable<User> {
     const url = `${this.usersUrl}/?id=${id}`;
     return this.http.get<User[]>(url).pipe(
@@ -60,9 +60,9 @@ export class UserService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<User[]>(`${this.usersUrl}/? name=${term}`)
+    return this.http.get<User[]>(`${this.usersUrl}/?name=${term}`)
     .pipe(
-      tap(x =>x.length ?
+      tap(x => x.length ?
         this.log(`Found users matching "${term}"`):
         this.log(`No users matching "${term}"`)),
       catchError(this.handleError<User[]>(`searchUsers`, []))
