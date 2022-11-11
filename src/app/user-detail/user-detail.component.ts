@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {User} from '../user';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ParamMap, ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import { UserService } from '../user.service';
 
@@ -10,6 +10,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
+  user!: User;
+  id!: Number;
 
   constructor(
     private route: ActivatedRoute,
@@ -17,13 +19,19 @@ export class UserDetailComponent implements OnInit {
     private location: Location
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.id= this.id;
     this.getUser();
   }
 
   getUser(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(id).subscribe(user => this.user = user);
+   this.id = Number(this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id != null) {
+        this.id = +id;
+      }    
+    this.userService.getUser(this.id).subscribe(user => this.user = user);
+  }))
   }
 
   save(): void {
@@ -36,7 +44,4 @@ export class UserDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
-  @Input() user?: User;
-
 }
