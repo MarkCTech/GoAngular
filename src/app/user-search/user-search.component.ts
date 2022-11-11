@@ -13,7 +13,7 @@ export class UserSearchComponent implements OnInit {
   users$!: Observable<User[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private userservice: UserService) { }
+  constructor(private userService: UserService) { }
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -26,7 +26,7 @@ export class UserSearchComponent implements OnInit {
       // Ignore same term resubmission
       distinctUntilChanged(),
       // Observable change when term changes
-      switchMap((term: string) => this.userservice.searchUsers(term)),
+      switchMap((term: string) => this.userService.searchUsers(term)),
     );
   }
 }

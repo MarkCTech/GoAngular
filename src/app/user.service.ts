@@ -10,28 +10,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
 
+  // URL to web api
+  private usersUrl = 'api/users';
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) { }
-
-  // URL to web api
-  private usersUrl = 'api/users';
-
-  private log(message: string) {
-    this.messageService.add(`UserService: ${message}`);
-  }
-
-  //Handle Http operation failure, let app continue
-  //@param operation - name of the operation that failed
-  //@param result - optional value to return as the observable result
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); // log to console
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
 
   //GET all users
   getUsers(): Observable<User[]> {
@@ -43,7 +28,7 @@ export class UserService {
   }
 
   //GET user by id
-  getUser<Data>(id: number): Observable<User> {
+  getUser<Data>(id: Number): Observable<User> {
     const url = `${this.usersUrl}/?id=${id}`;
     return this.http.get<User[]>(url).pipe(
       map(users => users[0]),
@@ -99,4 +84,19 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
+  //Handle Http operation failure, let app continue
+  //@param operation - name of the operation that failed
+  //@param result - optional value to return as the observable result
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+
+  private log(message: string) {
+    this.messageService.add(`UserService: ${message}`);
+  }
 }
