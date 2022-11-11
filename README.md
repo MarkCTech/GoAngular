@@ -1,6 +1,6 @@
 # AngularFront
 ## Summary
-A web app, built using the 'Tour of Heroes' tutorial in the Angular Docs as a reference.
+A Single Page CRUD Web App. 
 
 ## Using the Program
 
