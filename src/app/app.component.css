@@ -10,7 +10,10 @@ h1 {
     font-weight: lighter;
   }
   body {
-    margin: 2em;
+    width: 600px;
+    border: 10px solid #435A60;
+    padding: 20px;
+    margin: 0px;
   }
   body, input[type="text"], button {
     color: #333;
@@ -41,7 +44,6 @@ h1 {
   nav a {
     padding: 1rem;
     text-decoration: none;
-    margin-top: 10px;
     display: inline-block;
     background-color: #e8e8e8;
     color: #3d3d3d;
@@ -54,6 +56,13 @@ h1 {
   }
   nav a:active {
     background-color: black;
+  }
+
+  nav app-user-search {
+    position: relative;
+    float: right;
+    top: 0px;
+    right: 200px;
   }
   
   /* everywhere else */
