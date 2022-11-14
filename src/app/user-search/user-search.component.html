@@ -1,6 +1,6 @@
 <div id="search-component">
-    <label for="search-box">Username Search</label>
-    <input #searchBox id="search-box" (click)="searchToggle()" (input)="search(searchBox.value)" />
+    <label for="search-box">Search User:</label>
+    <input #searchBox id="search-box" (click)="searchShow()" (input)="search(searchBox.value)" />
 
     <ng-container *ngIf="show">
       <ul class="search-result">
@@ -10,5 +10,5 @@
             </a>
         </li>
       </ul>
-  </ng-container>
-  </div>
+    </ng-container>
+</div>

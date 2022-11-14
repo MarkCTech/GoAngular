@@ -12,16 +12,21 @@ import { UserService } from '../user.service';
 export class UserSearchComponent implements OnInit {
   users$!: Observable<User[]>;
   private searchTerms = new Subject<string>();
+
   public show:boolean = false;
   public buttonName:any = 'Show';
 
   constructor(private userService: UserService) { }
 
+  ngOnInit(): void {
+    this.makeSearch();
+  };
+
   search(term: string): void {
     this.searchTerms.next(term);
   }
 
-  ngOnInit(): void {
+  makeSearch(): void {
     this.users$ = this.searchTerms.pipe(
       // Wait ms on keystroke before considering
       debounceTime(300),
@@ -30,15 +35,20 @@ export class UserSearchComponent implements OnInit {
       // Observable change when term changes
       switchMap((term: string) => this.userService.searchUsers(term)),
     );
-  };
-  
+  }
+
+  searchShow(): void {
+    // Shows search results on clicking Input-Box
+    this.show = true;
+  }
+
   searchToggle(): void {
    // reverse the value of property
     this.show = !this.show;
-    if(this.show)  
+    if(this.show)
       this.buttonName = "Hide";
     else
-    this.buttonName = "Show";
+      this.buttonName = "Show";
   };
 }
 
