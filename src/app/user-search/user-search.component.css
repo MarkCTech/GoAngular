@@ -3,7 +3,7 @@
 label {
     position: absolute;
     top: 0px;
-    right: 5px;
+    right: 0px;
     display: block;
     font-weight: bold;
     font-size: 1.2rem;
@@ -11,13 +11,12 @@ label {
     margin-bottom: .5rem;
   }
   input {
-    position: absolute;
-    top: 50px;
-    right: 5px;
+    position: relative;
+    float: right;
+    top: 10px;
+    right: -170px;
     padding: .5rem;
-    width: 20%;
-    min-width: 160px;
-    max-width: 240px;
+    width: 160px;
     box-sizing: border-box;
     display: block;
   }
@@ -35,9 +34,7 @@ label {
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     display: inline-block;
-    width: 20%;
-    min-width: 160px;
-    max-width: 240px;
+    width: 160px;
     padding: .5rem;
     box-sizing: border-box;
     text-decoration: none;
@@ -52,11 +49,7 @@ label {
   ul.search-result {
     position: relative;
     float: right;
-    top: 13px;
-    right: 17px;
-    width: 18%;
-    min-width: 140px;
-    max-width: 220px;
-    margin-top: 0;
-    padding-left: 0;
+    right: -325px;
+    top: 32px;
+    width: 155px;
   }
