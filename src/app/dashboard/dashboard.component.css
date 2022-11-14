@@ -1,35 +1,32 @@
 /* DashboardComponent's private CSS styles */
 
 h2 {
-    text-align: left;
+    text-align: center;
   }
   
-  .heroes-menu {
-    padding: 0;
-    margin: auto;
-    max-width: 1000px;
-  
+  .users-menu {
+    max-width: 300px;
     /* flexbox */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-content: flex-start;
-    align-items: flex-start;
+    align-self: center;
+    margin: 0 auto;
   }
   
   a {
+    display: block;
     background-color: #3f525c;
     border-radius: 2px;
     padding: 1rem;
     font-size: 1.2rem;
     text-decoration: none;
-    display: inline-block;
     color: #fff;
     text-align: center;
     width: 100%;
     min-width: 70px;
-    margin: .5rem auto;
+    margin: .5rem;
     box-sizing: border-box;
   
     /* flexbox */
@@ -38,12 +35,12 @@ h2 {
     align-self: auto;
   }
   
-  @media (min-width: 600px) {
+  /* @media (min-width: 600px) {
     a {
       width: 18%;
       box-sizing: content-box;
     }
-  }
+  } */
   
   a:hover {
     background-color: #000;
