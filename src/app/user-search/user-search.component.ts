@@ -12,6 +12,8 @@ import { UserService } from '../user.service';
 export class UserSearchComponent implements OnInit {
   users$!: Observable<User[]>;
   private searchTerms = new Subject<string>();
+  public show:boolean = false;
+  public buttonName:any = 'Show';
 
   constructor(private userService: UserService) { }
 
@@ -28,5 +30,15 @@ export class UserSearchComponent implements OnInit {
       // Observable change when term changes
       switchMap((term: string) => this.userService.searchUsers(term)),
     );
-  }
+  };
+  
+  searchToggle(): void {
+   // reverse the value of property
+    this.show = !this.show;
+    if(this.show)  
+      this.buttonName = "Hide";
+    else
+    this.buttonName = "Show";
+  };
 }
+
