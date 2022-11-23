@@ -14,16 +14,6 @@ import (
 //go:embed static/*
 var staticFS embed.FS
 
-func main() {
-	server()
-}
-
-func server() {
-	router := gin.Default()
-	AddRoutes(router)
-	router.Run("localhost:5000")
-}
-
 // AddRoutes serves the static file system for the Angular Web App.
 func AddRoutes(router gin.IRouter) {
 	embeddedBuildFolder := newStaticFileSystem()
