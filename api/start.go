@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/martoranam/AngularFront/client"
+	"github.com/martoranam/AngularFront/client/"
 )
 
 func Start() {
