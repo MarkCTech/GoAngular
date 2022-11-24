@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/martoranam/AngularFront/api"
+	"github.com/martoranam/GoAngular/api"
 )
 
 func main() {

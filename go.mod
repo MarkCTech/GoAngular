@@ -1,4 +1,4 @@
-module github.com/martoranam/AngularFront
+module github.com/martoranam/GoAngular
 
 go 1.19
 
