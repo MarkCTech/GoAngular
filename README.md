@@ -1,6 +1,6 @@
 # AngularFront
 ## Summary
-This is a Single Page Web-App in Angular, embedded as a static file into Go, then served using gin-gonic. Routing alls back onto a backup file system to handle browser refresh.
+This is a Single Page Web-App in Angular, embedded as a static file into Go, then served using gin-gonic. Routing falls back onto a new embedded file system to handle browser refresh.
 
 ## Running the Program
 The Angular must be built first into a static file with 'ng build'.
