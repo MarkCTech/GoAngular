@@ -16,5 +16,6 @@ func main() {
 	app.Router = gin.Default()
 	gin_api.InputApp = &app
 	gin_api.AddStaticRoutes()
+	app.Router.SetTrustedProxies(nil)
 	app.Router.Run("localhost:5000")
 }
