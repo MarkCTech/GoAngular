@@ -11,9 +11,8 @@ import (
 var staticFS embed.FS
 
 func main() {
-	var app gin_api.App
-	app.StaticFS = staticFS
-	app.Router = gin.Default()
+	app := gin_api.App{StaticFS: staticFS, Router: gin.Default()}
+
 	gin_api.InputApp = &app
 	gin_api.AddStaticRoutes()
 	app.Router.SetTrustedProxies(nil)
